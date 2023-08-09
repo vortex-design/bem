@@ -2,6 +2,8 @@
 
 A Rust-based parser for the BEM file format, utilizing the [Pest](https://github.com/pest-parser/pest) parsing library.
 
+[![Rust](https://github.com/vortex-design/bem/actions/workflows/rust.yml/badge.svg)](https://github.com/vortex-design/bem/actions/workflows/rust.yml)
+
 ## Overview
 
 This parser provides functionality to parse BEM (Block Element Modifier) notations, primarily used in CSS methodologies for naming classes in HTML. With this parser, you can interpret and work with BEM notations programmatically in Rust.
