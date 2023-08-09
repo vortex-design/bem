@@ -1,5 +1,3 @@
 {
-	"recommendations": [
-		"pest.pest-ide-tools"
-	]
+	"recommendations": ["esbenp.prettier-vscode", "pest.pest-ide-tools"]
 }

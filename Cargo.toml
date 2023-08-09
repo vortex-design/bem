@@ -2,6 +2,12 @@
 name = "bem"
 version = "0.1.0"
 edition = "2021"
+authors = ["Your Name <you@example.com>"]
+description = "Parser for the BEM file format (Block, Element, Modifier)"
+readme = "README.md"
+keywords = ["bem", "parser", "pest"]
+categories = ["parsing"]
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
