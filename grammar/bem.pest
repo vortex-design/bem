@@ -2,4 +2,4 @@ name      = @{ ASCII_ALPHA_LOWER ~ ("-"? ~ ASCII_ALPHANUMERIC)* }
 modifiers =  { "(" ~ name ~ ("|" ~ name)* ~ ")" }
 block     =  { SOI ~ name ~ modifiers? }
 element   =  { NEWLINE ~ name ~ modifiers? }
-bem       = _{ block ~ element* ~ EOI }
+bem       = _{ block ~ element* ~ NEWLINE? ~ EOI }

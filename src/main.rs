@@ -1,18 +1,40 @@
-#[macro_use]
-extern crate pest_derive;
+use clap::Parser;
+use std::fs::File;
+use std::io::{ self, Read, Write };
 
-use pest::Parser;
+#[derive(Parser, Debug)]
+#[command(author, version, about, long_about = None)]
+struct Cli {
+	/// Input file name (default: <stdin>)
+	#[arg(value_name = "INPUT_FILE")]
+	input_file: Option<String>,
 
-#[derive(Parser)]
-#[grammar = "grammar/bem.pest"]
-pub struct BEMParser;
+	/// Output file name (default: <stdout>)
+	#[arg(short, long, value_name = "OUTPUT_FILE")]
+	out: Option<String>,
+}
 
-fn main() {
-	let bem_content = "media-player(dark|light)\nbutton(fast-forward|rewind)\ntimeline";
-	let parsed = BEMParser::parse(Rule::bem, bem_content).expect("Failed to parse BEM content");
+fn main() -> io::Result<()> {
+	let cli = Cli::parse();
 
-	// Process the parsed content...
-	for pair in parsed {
-		println!("{:?}", pair);
+	let mut bem_input = String::new();
+	if let Some(input_file) = cli.input_file.as_deref() {
+		File::open(input_file)?.read_to_string(&mut bem_input)?;
+	} else {
+		io::stdin().read_to_string(&mut bem_input)?;
 	}
+
+	let bem_block = bem::parser::BEMParser
+		::parse_bem(&bem_input)
+		.map_err(|e| io::Error::new(io::ErrorKind::InvalidInput, e))?;
+	let json_output = bem::convert_to_json(&bem_block)?;
+
+	if let Some(out) = cli.out.as_deref() {
+		println!("Value for out: {}", out);
+		File::create(out)?.write_all(json_output.as_bytes())?;
+	} else {
+		io::stdout().write_all(json_output.as_bytes())?;
+	}
+
+	Ok(())
 }
