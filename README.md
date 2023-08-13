@@ -1,17 +1,18 @@
 # BEM Parser
 
-A Rust-based parser for the BEM file format, utilizing the [Pest](https://github.com/pest-parser/pest) parsing library.
+A Rust-based parser for the BEM (Block Element Modifier) file format, utilizing the [Pest](https://github.com/pest-parser/pest) parsing library.
 
 [![Rust](https://github.com/vortex-design/bem/actions/workflows/rust.yml/badge.svg)](https://github.com/vortex-design/bem/actions/workflows/rust.yml)
 
 ## Overview
 
-This parser provides functionality to parse BEM (Block Element Modifier) notations, primarily used in CSS methodologies for naming classes in HTML. With this parser, you can interpret and work with BEM notations programmatically in Rust.
+This parser provides functionality to parse BEM notations, primarily used in CSS methodologies for naming classes in HTML. With this parser, you can interpret and work with BEM notations programmatically in Rust.
 
 ## Features
 
 - Parse BEM blocks, elements, and modifiers.
-- Support for single dashes in names.
+- Support for dashes in block and element names.
+- Support for enclosing modifiers in square brackets and separating with commas.
 - Robust error handling with detailed parsing error messages.
 - Lightweight and efficient parsing using Pest.
 
@@ -31,22 +32,35 @@ Add `bem` to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-bem = "0.1.0"
+bem = "0.2.0"
 ```
 
 ### Usage
 
-Here's a simple example:
+Here's a simple example to parse a BEM formatted string:
 
 ```rust
-use bem::BEMParser;
+use bem::parse_bem;
 
-let bem_content = "media-player(dark|light)\nbutton(fast-forward|rewind)\ntimeline";
-let parsed = BEMParser::parse(&bem_content).expect("Failed to parse BEM content");
+let input = "block[mod1,mod2]\nelement1\nelement2[mod3]";
+let bem_block = parse_bem(input).unwrap();
 
-// Process the parsed content...
-for pair in parsed {
-  println!("{:?}", pair);
+// You can now access `bem_block.name`, `bem_block.modifiers`, and `bem_block.elements`.
+```
+
+## Error Handling
+
+The `parse_bem` function returns a `Result<BEMBlock, String>`, allowing you to handle parsing errors explicitly. Here's an example:
+
+```rust
+let input = "block[mod1,mod2]\nelement1\nelement2[mod3]";
+match parse_bem(input) {
+    Ok(bem_block) => {
+        // Process the parsed block
+    },
+    Err(error) => {
+        println!("Failed to parse BEM content: {}", error);
+    }
 }
 ```
 
