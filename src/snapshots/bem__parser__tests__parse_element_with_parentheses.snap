@@ -1,0 +1,10 @@
+---
+source: src/parser.rs
+expression: e.to_string()
+---
+Pest parsing error:  --> 2:4
+  |
+2 | bar(baz,qux)
+  |    ^---
+  |
+  = expected EOI, modifiers, or element

@@ -1,7 +1,9 @@
 use models::BEMBlock;
 
+pub use parser::parse_bem;
+
 mod models;
-pub mod parser;
+mod parser;
 
 pub fn convert_to_json(bem_block: &BEMBlock) -> Result<String, serde_json::Error> {
 	// Convert the BEM block into JSON

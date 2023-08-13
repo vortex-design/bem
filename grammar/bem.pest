@@ -1,5 +1,6 @@
 name      = @{ ASCII_ALPHA_LOWER ~ ("-"? ~ ASCII_ALPHANUMERIC)* }
-modifiers =  { "(" ~ name ~ ("|" ~ name)* ~ ")" }
+modifiers =  { "[" ~ ws* ~ name ~ ws* ~ ("," ~ ws* ~ name ~ ws*)* ~ ","? ~ ws* ~ "]" }
 block     =  { SOI ~ name ~ modifiers? }
 element   =  { NEWLINE ~ name ~ modifiers? }
-bem       = _{ block ~ element* ~ NEWLINE? ~ EOI }
+bem       = _{ block ~ element* ~ NEWLINE* ~ EOI }
+ws        = _{ " " | "\t" | NEWLINE }

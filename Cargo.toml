@@ -1,11 +1,15 @@
 [package]
 name = "bem"
-version = "0.1.0"
+version = "0.2.0"
+authors = ["vortex.design"]
 edition = "2021"
 description = "Parser for the BEM file format (Block, Element, Modifier)"
+documentation = "https://github.com/vortex-design/bem/blob/main/README.md"
+homepage = "http://vortex.design"
+repository = "https://github.com/vortex-design/bem"
 readme = "README.md"
 keywords = ["bem", "parser", "pest"]
-categories = ["parsing"]
+categories = ["parsing", "command-line-utilities"]
 license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -18,3 +22,6 @@ pest_consume = "1.1.3"
 serde = { version = "1.0.183", features = ["derive"] }
 serde_json = "1.0.104"
 serde_derive = "1.0.183"
+
+[dev-dependencies]
+insta = "1.31.0"

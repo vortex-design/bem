@@ -5,3 +5,6 @@ indent_style = tab
 tab_size = 3
 insert_final_newline = true
 end_of_line = lf
+
+[*.md]
+indent_style = space

@@ -1,6 +1,7 @@
 use clap::Parser;
 use std::fs::File;
 use std::io::{ self, Read, Write };
+use bem::parse_bem;
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
@@ -24,9 +25,9 @@ fn main() -> io::Result<()> {
 		io::stdin().read_to_string(&mut bem_input)?;
 	}
 
-	let bem_block = bem::parser::BEMParser
-		::parse_bem(&bem_input)
-		.map_err(|e| io::Error::new(io::ErrorKind::InvalidInput, e))?;
+	let bem_block = parse_bem(&bem_input).map_err(|e|
+		io::Error::new(io::ErrorKind::InvalidInput, e)
+	)?;
 	let json_output = bem::convert_to_json(&bem_block)?;
 
 	if let Some(out) = cli.out.as_deref() {
