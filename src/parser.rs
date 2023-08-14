@@ -37,14 +37,15 @@ struct BEMGrammar;
 ///
 /// Save this content in a file with a `.bem` extension, like `example.bem`, and then you can parse it with the following code:
 ///
-/// ```
+/// ```ignore
 /// use bem::parse;
 /// use std::fs;
 ///
 /// let input = fs::read_to_string("example.bem").expect("Failed to read BEM file");
 /// let bem_block = parse(&input).unwrap();
+/// ```
 ///
-/// // You can now access `bem_block.name`, `bem_block.modifiers`, and `bem_block.elements`.
+/// You can now access `bem_block.name`, `bem_block.modifiers`, and `bem_block.elements`.
 pub fn parse(input: &str) -> Result<BEMBlock, String> {
 	let mut name = String::new();
 	let mut modifiers = Vec::new();
