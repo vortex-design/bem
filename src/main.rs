@@ -1,3 +1,23 @@
+//! This tool provides a command-line interface for working with BEM (Block Element Modifier) notation.
+//! It leverages the `bem` library to parse, serialize, and deserialize BEM structures, providing
+//! powerful functionality in a convenient CLI format.
+//!
+//! # Usage
+//!
+//! Run the following command for a specific task:
+//!
+//! - `cat media-player.bem | bem`: Parse BEM notation from stdin.
+//! - `echo [INPUT] | bem`: Parse BEM notation from piped input.
+//!
+//! # Examples
+//!
+//! ```
+//! $ cat media-player.bem | bem
+//! $ echo "media-player[dark]\nbutton[fast-forward,rewind]\ntimeline" | bem
+//! ```
+//!
+//! Please refer to the individual command documentation for detailed information and options.
+
 use clap::Parser;
 use std::fs::File;
 use std::io::{ self, Read, Write };
