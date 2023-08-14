@@ -1,3 +1,29 @@
+//! `bem` is a Rust crate that provides a simple and intuitive interface to work with BEM (Block Element Modifier) notation.
+//! It includes functions to parse BEM blocks, elements, and their modifiers, and to convert them to and from JSON representation.
+//!
+//! With this crate, you can easily serialize and deserialize BEM structures in your Rust applications,
+//! making it an excellent choice for web developers, CSS authors, and anyone working with BEM-based design.
+//!
+//! # Features
+//!
+//! - **Parse BEM Notation**: Use the `parse` function to interpret BEM strings and create corresponding Rust structures.
+//! - **JSON Serialization and Deserialization**: Convert BEM blocks to JSON strings and vice versa with the `to_json` and `from_json` functions.
+//! - **Customizable Models**: Work with `BEMBlock` and `BEMElement` structs to represent BEM structures, supporting custom modifiers and elements.
+//!
+//! # Quick Start
+//!
+//! Add the crate to your Cargo.toml and start working with BEM structures right away!
+//!
+//! ```
+//! use bem::{BEMBlock, to_json, from_json};
+//!
+//! let bem_block = BEMBlock { name: "media-player".to_string(), modifiers: vec![], elements: vec![] };
+//! let json = to_json(&bem_block).unwrap();
+//! let bem_block_from_json = from_json(&json).unwrap();
+//! ```
+//!
+//! Please see the individual function and structure documentation for detailed information and examples.
+
 pub use models::{ BEMBlock, BEMElement };
 pub use parser::parse;
 

@@ -1,3 +1,7 @@
+//! This module provides the functions and utilities needed to parse BEM (Block Element Modifier)
+//! notation into structured data formats. It leverages the Rust nom parser combinator library
+//! to provide efficient and robust parsing capabilities.
+
 use pest::Parser;
 use pest_derive::Parser;
 use crate::models::{ BEMBlock, BEMElement };

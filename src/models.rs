@@ -1,3 +1,7 @@
+//! This module defines the core data structures used throughout the library
+//! for representing BEM (Block Element Modifier) components. These structures
+//! are used for both parsing and serializing BEM notation.
+
 use serde::{ Serialize, Deserialize };
 
 /// Represents a BEM (Block Element Modifier) block, which consists of a name,
