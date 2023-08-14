@@ -27,14 +27,26 @@ struct BEMGrammar;
 ///
 /// # Examples
 ///
+/// The input can be in the following format and should be saved with the `.bem` file extension:
+///
+/// ```plaintext
+/// media-player[dark]
+/// button[fast-forward,rewind]
+/// timeline
 /// ```
-/// use bem::parse_bem;
 ///
-/// let input = "block[mod1,mod2]\nelement1\nelement2[mod3]";
-/// let bem_block = parse_bem(input).unwrap();
+/// Save this content in a file with a `.bem` extension, like `example.bem`, and then you can parse it with the following code:
 ///
-/// // You can now access `bem_block.name`, `bem_block.modifiers`, and `bem_block.elements`.
-pub fn parse_bem(input: &str) -> Result<BEMBlock, String> {
+/// ```ignore
+/// use bem::parse;
+/// use std::fs;
+///
+/// let input = fs::read_to_string("example.bem").expect("Failed to read BEM file");
+/// let bem_block = parse(&input).unwrap();
+/// ```
+///
+/// You can now access `bem_block.name`, `bem_block.modifiers`, and `bem_block.elements`.
+pub fn parse(input: &str) -> Result<BEMBlock, String> {
 	let mut name = String::new();
 	let mut modifiers = Vec::new();
 	let mut elements = Vec::new();
@@ -110,7 +122,7 @@ mod tests {
 	#[test]
 	fn test_parse_block() {
 		let input = "foo";
-		let result = super::parse_bem(input);
+		let result = super::parse(input);
 
 		assert!(result.is_ok());
 
@@ -126,7 +138,7 @@ mod tests {
 	#[test]
 	fn test_parse_block_with_dashes() {
 		let input = "foo-bar-baz";
-		let result = super::parse_bem(input);
+		let result = super::parse(input);
 
 		assert!(result.is_ok());
 
@@ -142,7 +154,7 @@ mod tests {
 	#[test]
 	fn test_parse_block_with_modifier() {
 		let input = "foo[bar]";
-		let result = super::parse_bem(input);
+		let result = super::parse(input);
 
 		assert!(result.is_ok());
 
@@ -158,7 +170,7 @@ mod tests {
 	#[test]
 	fn test_parse_block_with_modifier_with_dashes() {
 		let input = "foo[bar-baz-qux]";
-		let result = super::parse_bem(input);
+		let result = super::parse(input);
 
 		assert!(result.is_ok());
 
@@ -174,7 +186,7 @@ mod tests {
 	#[test]
 	fn test_parse_block_with_modifiers() {
 		let input = "foo[bar,baz,qux]";
-		let result = super::parse_bem(input);
+		let result = super::parse(input);
 
 		assert!(result.is_ok());
 
@@ -190,7 +202,7 @@ mod tests {
 	#[test]
 	fn test_parse_block_with_modifiers_and_spaces() {
 		let input = "foo[  bar  ,  baz  ]";
-		let result = super::parse_bem(input);
+		let result = super::parse(input);
 
 		assert!(result.is_ok());
 
@@ -206,7 +218,7 @@ mod tests {
 	#[test]
 	fn test_parse_block_with_modifiers_and_newlines_and_tabs() {
 		let input = "foo[\n\tbar,\n\tbaz]";
-		let result = super::parse_bem(input);
+		let result = super::parse(input);
 
 		assert!(result.is_ok());
 
@@ -222,7 +234,7 @@ mod tests {
 	#[test]
 	fn test_parse_block_with_modifiers_and_trailing_commas() {
 		let input = "foo[bar,baz,]";
-		let result = super::parse_bem(input);
+		let result = super::parse(input);
 
 		assert!(result.is_ok());
 
@@ -238,7 +250,7 @@ mod tests {
 	#[test]
 	fn test_parse_block_with_parentheses() {
 		let input = "foo(bar,baz)";
-		let result = super::parse_bem(input);
+		let result = super::parse(input);
 
 		assert!(result.is_err());
 
@@ -252,7 +264,7 @@ mod tests {
 	#[test]
 	fn test_parse_element() {
 		let input = "foo\nbar";
-		let result = super::parse_bem(input);
+		let result = super::parse(input);
 
 		assert!(result.is_ok());
 
@@ -271,7 +283,7 @@ mod tests {
 	#[test]
 	fn test_parse_element_with_dashes() {
 		let input = "foo\nbar-baz-qux";
-		let result = super::parse_bem(input);
+		let result = super::parse(input);
 
 		assert!(result.is_ok());
 
@@ -290,7 +302,7 @@ mod tests {
 	#[test]
 	fn test_parse_element_with_modifier() {
 		let input = "foo\nbar[baz]";
-		let result = super::parse_bem(input);
+		let result = super::parse(input);
 
 		assert!(result.is_ok());
 
@@ -309,7 +321,7 @@ mod tests {
 	#[test]
 	fn test_parse_element_with_modifiers() {
 		let input = "foo\nbar[baz,qux]";
-		let result = super::parse_bem(input);
+		let result = super::parse(input);
 
 		assert!(result.is_ok());
 
@@ -328,7 +340,7 @@ mod tests {
 	#[test]
 	fn test_parse_element_with_modifiers_and_spaces() {
 		let input = "foo\nbar[  baz  ,  qux  ]";
-		let result = super::parse_bem(input);
+		let result = super::parse(input);
 
 		assert!(result.is_ok());
 
@@ -347,7 +359,7 @@ mod tests {
 	#[test]
 	fn test_parse_element_with_modifiers_and_newlines_and_tabs() {
 		let input = "foo\nbar[\n\tbaz,\n\tqux]";
-		let result = super::parse_bem(input);
+		let result = super::parse(input);
 
 		assert!(result.is_ok());
 
@@ -366,7 +378,7 @@ mod tests {
 	#[test]
 	fn test_parse_element_with_modifiers_and_trailing_commas() {
 		let input = "foo\nbar[baz,qux,]";
-		let result = super::parse_bem(input);
+		let result = super::parse(input);
 
 		assert!(result.is_ok());
 
@@ -385,7 +397,7 @@ mod tests {
 	#[test]
 	fn test_parse_element_with_parentheses() {
 		let input = "foo\nbar(baz,qux)";
-		let result = super::parse_bem(input);
+		let result = super::parse(input);
 
 		assert!(result.is_err());
 
@@ -399,7 +411,7 @@ mod tests {
 	#[test]
 	fn test_parse_elements() {
 		let input = "foo\nbar\nbaz\nqux";
-		let result = super::parse_bem(input);
+		let result = super::parse(input);
 
 		assert!(result.is_ok());
 
@@ -428,7 +440,7 @@ mod tests {
 	#[test]
 	fn test_parse_block_modifiers_and_element_modifiers() {
 		let input = "a[b,c]\nd[e,f]\ng\nh[i]";
-		let result = super::parse_bem(input);
+		let result = super::parse(input);
 
 		assert!(result.is_ok());
 
@@ -457,7 +469,7 @@ mod tests {
 	#[test]
 	fn test_parse_final_newlines() {
 		let input = "foo\n\n\n";
-		let result = super::parse_bem(input);
+		let result = super::parse(input);
 
 		assert!(result.is_ok());
 
