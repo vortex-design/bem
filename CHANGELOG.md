@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.5](https://github.com/vortex-design/bem/compare/v0.2.4...v0.2.5) - 2023-08-14
+
+### Other
+- add crate-level doc comments ([#16](https://github.com/vortex-design/bem/pull/16))
+
 ## [0.2.4](https://github.com/vortex-design/bem/compare/v0.2.3...v0.2.4) - 2023-08-14
 
 ### Fixed
