@@ -42,21 +42,21 @@ bem = "0.2.0"
 Here's a simple example to parse a BEM formatted string:
 
 ```rust
-use bem::parse_bem;
+use bem::parse;
 
 let input = "block[mod1,mod2]\nelement1\nelement2[mod3]";
-let bem_block = parse_bem(input).unwrap();
+let bem_block = parse(input).unwrap();
 
 // You can now access `bem_block.name`, `bem_block.modifiers`, and `bem_block.elements`.
 ```
 
 ## Error Handling
 
-The `parse_bem` function returns a `Result<BEMBlock, String>`, allowing you to handle parsing errors explicitly. Here's an example:
+The `parse` function returns a `Result<BEMBlock, String>`, allowing you to handle parsing errors explicitly. Here's an example:
 
 ```rust
 let input = "block[mod1,mod2]\nelement1\nelement2[mod3]";
-match parse_bem(input) {
+match parse(input) {
     Ok(bem_block) => {
         // Process the parsed block
     },
@@ -65,6 +65,10 @@ match parse_bem(input) {
     }
 }
 ```
+
+## Documentation
+
+Find the documentation for your installed version at <https://docs.rs/bem/VERSION/bem/>, replacing `VERSION` with your installed version number.
 
 ## Contributing
 
