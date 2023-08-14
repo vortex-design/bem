@@ -3,6 +3,8 @@
 A Rust-based parser for the BEM (Block Element Modifier) file format, utilizing the [Pest](https://github.com/pest-parser/pest) parsing library.
 
 [![Rust](https://github.com/vortex-design/bem/actions/workflows/rust.yml/badge.svg)](https://github.com/vortex-design/bem/actions/workflows/rust.yml)
+[![Release-plz](https://github.com/vortex-design/bem/actions/workflows/release-plz.yml/badge.svg)](https://github.com/vortex-design/bem/actions/workflows/release-plz.yml)
+[![CD](https://github.com/vortex-design/bem/actions/workflows/CD.yml/badge.svg)](https://github.com/vortex-design/bem/actions/workflows/CD.yml)
 
 ## Overview
 
