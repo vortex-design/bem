@@ -23,7 +23,7 @@ defaults:
 jobs:
   upload-assets:
     name: ${{ matrix.target }}
-    if: github.repository_owner == 'MyOwner' && startsWith(github.event.release.name, 'my-bin-v')
+    if: github.repository_owner == 'vortex-design' && startsWith(github.event.release.name, 'bem-v')
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -64,7 +64,7 @@ jobs:
         if: endsWith(matrix.target, 'windows-msvc')
       - uses: taiki-e/upload-rust-binary-action@v1
         with:
-          bin: my-bin
+          bin: bem
           target: ${{ matrix.target }}
           tar: all
           zip: windows
