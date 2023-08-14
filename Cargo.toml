@@ -1,6 +1,6 @@
 [package]
 name = "bem"
-version = "0.2.1"
+version = "0.2.2"
 authors = ["vortex.design"]
 edition = "2021"
 description = "Parser for the BEM file format (Block, Element, Modifier)"
