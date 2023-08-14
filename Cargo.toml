@@ -1,6 +1,6 @@
 [package]
 name = "bem"
-version = "0.2.0"
+version = "0.1.0"
 authors = ["vortex.design"]
 edition = "2021"
 description = "Parser for the BEM file format (Block, Element, Modifier)"
@@ -11,6 +11,12 @@ readme = "README.md"
 keywords = ["bem", "parser", "pest"]
 categories = ["parsing", "command-line-utilities"]
 license = "MIT"
+include = [
+	"Cargo.toml",
+	"grammar/*",
+	"**/*.md",
+	"**/*.rs",
+]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -25,3 +31,7 @@ serde_derive = "1.0.183"
 
 [dev-dependencies]
 insta = "1.31.0"
+
+[[bin]]
+name = "bem"
+path = "src/main.rs"

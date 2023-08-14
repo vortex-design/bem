@@ -6,5 +6,6 @@ tab_size = 3
 insert_final_newline = true
 end_of_line = lf
 
-[*.md]
+[*.md,*.yml]
 indent_style = space
+indent_size = 2
