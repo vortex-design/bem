@@ -60,16 +60,16 @@ pub fn parse(input: &str) -> Result<BEMBlock, String> {
 			for pair in bem.into_iter() {
 				match pair.as_rule() {
 					Rule::block => {
-						let (block_name, block_modifiers) = parse_part(pair).map_err(|e|
-							format!("Error parsing block: {}", e)
-						)?;
+						let (block_name, block_modifiers) = parse_part(pair).expect(
+							"Error parsing block should never happen, ensured by grammar"
+						);
 						name = block_name;
 						modifiers = block_modifiers;
 					}
 					Rule::element => {
-						let (element_name, element_modifiers) = parse_part(pair).map_err(|e|
-							format!("Error parsing element: {}", e)
-						)?;
+						let (element_name, element_modifiers) = parse_part(pair).expect(
+							"Error parsing block should never happen, ensured by grammar"
+						);
 						elements.push(BEMElement {
 							name: element_name,
 							modifiers: element_modifiers,
@@ -110,7 +110,7 @@ fn parse_part(pair: pest::iterators::Pair<Rule>) -> Result<(String, Vec<String>)
 				}
 			}
 			_ => {
-				// noop: should be unreachable
+				panic!("Unexpected rule encountered: {:?}", inner_pair.as_rule());
 			}
 		}
 	}
