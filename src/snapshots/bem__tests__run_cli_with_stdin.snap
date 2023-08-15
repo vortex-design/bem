@@ -1,0 +1,5 @@
+---
+source: src/main.rs
+expression: output_content
+---
+{"name":"media-player","modifiers":["dark"],"elements":[{"name":"button","modifiers":["fast-forward","rewind"]},{"name":"timeline","modifiers":[]}]}

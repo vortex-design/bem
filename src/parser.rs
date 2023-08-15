@@ -75,11 +75,8 @@ pub fn parse(input: &str) -> Result<BEMBlock, String> {
 							modifiers: element_modifiers,
 						});
 					}
-					Rule::EOI => {
-						break;
-					}
 					_ => {
-						return Err(format!("Unexpected rule: {:?}", pair.as_rule()));
+						break;
 					}
 				}
 			}
@@ -113,7 +110,7 @@ fn parse_part(pair: pest::iterators::Pair<Rule>) -> Result<(String, Vec<String>)
 				}
 			}
 			_ => {
-				return Err(format!("Unexpected rule: {:?}", inner_pair.as_rule()));
+				// noop: should be unreachable
 			}
 		}
 	}
