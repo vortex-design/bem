@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.7](https://github.com/vortex-design/bem/compare/v0.2.6...v0.2.7) - 2023-08-15
+
+### Other
+- fix coverage gaps, add Codecov badge to README ([#20](https://github.com/vortex-design/bem/pull/20))
+
 ## [0.2.6](https://github.com/vortex-design/bem/compare/v0.2.5...v0.2.6) - 2023-08-15
 
 ### Other
