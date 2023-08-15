@@ -28,15 +28,6 @@ Ensure you have Rust and Cargo installed:
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-### Installation
-
-Add `bem` to your `Cargo.toml`:
-
-```toml
-[dependencies]
-bem = "0.2.0"
-```
-
 ### Usage
 
 Here's a simple example to parse a BEM formatted string:

@@ -58,6 +58,34 @@ pub fn to_json(bem_block: &BEMBlock) -> Result<String, serde_json::Error> {
 	Ok(json_output)
 }
 
+/// Converts a `BEMBlock` into a pretty-printed JSON string.
+///
+/// This function takes a reference to a `BEMBlock` and serializes it into a prett-printed JSON string.
+/// It returns a `Result` containing the pretty-printed JSON string if the conversion is successful, or
+/// a `serde_json::Error` if there is a problem during serialization.
+///
+/// # Arguments
+///
+/// * `bem_block`: &BEMBlock - A reference to the `BEMBlock` to be converted to JSON.
+///
+/// # Returns
+///
+/// * `Result<String, serde_json::Error>` - A result containing the pretty-printed JSON string or an error.
+///
+/// # Examples
+///
+/// ```
+/// use bem::{BEMBlock, to_json_pretty};
+///
+/// let bem_block = BEMBlock { name: "media-player".to_string(), modifiers: vec![], elements: vec![] };
+/// let json = to_json_pretty(&bem_block).unwrap();
+/// ```
+pub fn to_json_pretty(bem_block: &BEMBlock) -> Result<String, serde_json::Error> {
+	let json_output = serde_json::to_string_pretty(&bem_block)?;
+
+	Ok(json_output)
+}
+
 /// Converts a JSON string into a `BEMBlock`.
 ///
 /// This function takes a JSON string and deserializes it into a `BEMBlock`.
@@ -111,6 +139,16 @@ mod tests {
 	fn test_to_json() {
 		let bem_block = create_test_bem_block();
 		let result = super::to_json(&bem_block);
+
+		assert!(result.is_ok());
+
+		insta::assert_snapshot!(result.unwrap());
+	}
+
+	#[test]
+	fn test_to_json_pretty() {
+		let bem_block = create_test_bem_block();
+		let result = super::to_json_pretty(&bem_block);
 
 		assert!(result.is_ok());
 
