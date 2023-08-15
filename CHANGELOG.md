@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.6](https://github.com/vortex-design/bem/compare/v0.2.5...v0.2.6) - 2023-08-15
+
+### Other
+- implement coverage
+- add CLI tests for main entry point
+
 ## [0.2.5](https://github.com/vortex-design/bem/compare/v0.2.4...v0.2.5) - 2023-08-14
 
 ### Other
