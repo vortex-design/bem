@@ -31,6 +31,7 @@ serde_derive = "1.0.183"
 
 [dev-dependencies]
 insta = "1.31.0"
+tempfile = "3.7.1"
 
 [[bin]]
 name = "bem"
